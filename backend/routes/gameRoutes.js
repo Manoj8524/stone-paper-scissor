@@ -4,19 +4,17 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 // Postgres pool setup
-
-
-// PostgreSQL pool setup
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false, // Secure connection-kku ithu venum
-  },
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
 });
 
 pool.connect()
-  .then(() => console.log("Connected to PostgreSQL"))
-  .catch(err => console.log("Connection error:", err));
+  .then(() => console.log("connected to postgres"))
+  .catch(err => console.log("Connection error:", err)); // Corrected catch
 
 // Create a new game
 router.post('/', async (req, res) => {
