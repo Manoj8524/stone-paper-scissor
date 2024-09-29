@@ -61,7 +61,7 @@ const RockPaperScissors = () => {
 
         // Save game data to the backend API
         try {
-          await axios.post(`http://localhost:5000/api/games`, {
+          await axios.post(`http://13.60.182.175:5000/api/games`, {
             player1,
             player2,
             rounds: [...rounds, { p1Choice, p2Choice, result }],
