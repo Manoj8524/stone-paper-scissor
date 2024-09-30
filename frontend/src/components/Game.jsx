@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandRock, faHandPaper, faHandScissors } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-// Game choices
+
 const choices = [
   { name: 'rock', icon: faHandRock },
   { name: 'paper', icon: faHandPaper },
   { name: 'scissors', icon: faHandScissors }
 ];
 
-// Initial state
+
 const initialState = {
   player1: '',
   player2: '',
@@ -22,7 +22,7 @@ const initialState = {
   gameOver: false,
 };
 
-// Reducer function
+
 const gameReducer = (state, action) => {
   switch (action.type) {
     case 'SET_PLAYER':
@@ -48,20 +48,20 @@ const RockPaperScissors = () => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
   const { player1, player2, p1Choice, p2Choice, rounds, currentRound, message, gameOver } = state;
 
-  // Game logic
+  
   const playGame = async () => {
     if (p1Choice && p2Choice) {
       const result = determineWinner(p1Choice, p2Choice);
       dispatch({ type: 'ADD_ROUND', payload: { round: { p1Choice, p2Choice, result } } });
 
-      // Check if final round (assuming game has 5 rounds)
+      
       if (currentRound === 5) {
         const finalWinner = determineOverallWinner();
         dispatch({ type: 'SET_WINNER', payload: finalWinner });
 
-        // Save game data to the backend API
+       
         try {
-          await axios.post(`http://13.60.182.175:5000/api/games`, {
+          await axios.post(`http://localhost:5000/api/games`, {
             player1,
             player2,
             rounds: [...rounds, { p1Choice, p2Choice, result }],
@@ -75,7 +75,7 @@ const RockPaperScissors = () => {
     }
   };
 
-  // Determine winner of the round
+  
   const determineWinner = (choice1, choice2) => {
     if (choice1 === choice2) return "It's a tie!";
     if (
@@ -88,7 +88,7 @@ const RockPaperScissors = () => {
     return `${player2} Wins Round!`;
   };
 
-  // Determine overall winner
+  
   const determineOverallWinner = () => {
     const p1Wins = rounds.filter((round) => round.result.includes(player1)).length;
     const p2Wins = rounds.filter((round) => round.result.includes(player2)).length;
@@ -102,7 +102,7 @@ const RockPaperScissors = () => {
     }
   };
 
-  // Reset game
+
   const resetGame = () => {
     dispatch({ type: 'RESET_GAME' });
   };

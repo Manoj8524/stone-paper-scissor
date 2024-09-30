@@ -4,7 +4,7 @@ import GameHistory from './components/GameHistory';
 
 
 function App() {
-  const [view, setView] = useState('game'); // game or history
+  const [view, setView] = useState('game');
   
   return (
     <div className="text-center p-8">

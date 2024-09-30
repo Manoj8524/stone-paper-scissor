@@ -3,7 +3,7 @@ const router = express.Router();
 const { Pool } = require('pg');
 require('dotenv').config();
 
-// Postgres pool setup
+
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -14,9 +14,9 @@ const pool = new Pool({
 
 pool.connect()
   .then(() => console.log("connected to postgres"))
-  .catch(err => console.log("Connection error:", err)); // Corrected catch
+  .catch(err => console.log("Connection error:", err)); 
 
-// Create a new game
+
 router.post('/', async (req, res) => {
   const { player1, player2, rounds, winner } = req.body;
 
@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all games
 router.get('/', async (req, res) => {
   try {
     const games = await pool.query('SELECT * FROM games');
