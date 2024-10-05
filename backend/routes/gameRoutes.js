@@ -5,11 +5,11 @@ require('dotenv').config();
 
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
-  port: process.env.DB_PORT,
+  user: 'postgres', 
+  host: 'gamedb.c5eu8cs0m3oa.eu-north-1.rds.amazonaws.com',  
+  database: 'game_db', 
+  password: 'Aps1234manojm',  
+  port: 5432,
 });
 
 pool.connect()
