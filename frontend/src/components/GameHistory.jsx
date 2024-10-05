@@ -27,7 +27,7 @@ function GameHistory() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/games');
+        const response = await axios.get('https://13.235.67.211/api/games');
         dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
       } catch (error) {
         dispatch({ type: 'FETCH_ERROR', payload: error.message });

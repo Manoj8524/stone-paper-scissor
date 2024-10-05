@@ -61,7 +61,7 @@ const RockPaperScissors = () => {
 
        
         try {
-          await axios.post(`http://localhost:5000/api/games`, {
+          await axios.post(`https://13.235.67.211/api/games`, {
             player1,
             player2,
             rounds: [...rounds, { p1Choice, p2Choice, result }],
