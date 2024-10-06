@@ -60,7 +60,7 @@ const RockPaperScissors = () => {
   
         try {
           await axios.post(
-            `https://13.235.67.211/api/games`,
+            `http://3.110.165.52:5000/api/games`,
             {
               player1,
               player2,
@@ -68,7 +68,7 @@ const RockPaperScissors = () => {
               winner: finalWinner,
             },
             {
-              withCredentials: true,  // <-- This ensures credentials like cookies are sent
+              // withCredentials: true, 
             }
           );
           console.log('Game saved successfully');
