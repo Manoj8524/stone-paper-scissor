@@ -53,20 +53,24 @@ const RockPaperScissors = () => {
     if (p1Choice && p2Choice) {
       const result = determineWinner(p1Choice, p2Choice);
       dispatch({ type: 'ADD_ROUND', payload: { round: { p1Choice, p2Choice, result } } });
-
-      
+  
       if (currentRound === 5) {
         const finalWinner = determineOverallWinner();
         dispatch({ type: 'SET_WINNER', payload: finalWinner });
-
-       
+  
         try {
-          await axios.post(`https://13.235.67.211/api/games`, {
-            player1,
-            player2,
-            rounds: [...rounds, { p1Choice, p2Choice, result }],
-            winner: finalWinner,
-          });
+          await axios.post(
+            `https://13.235.67.211/api/games`,
+            {
+              player1,
+              player2,
+              rounds: [...rounds, { p1Choice, p2Choice, result }],
+              winner: finalWinner,
+            },
+            {
+              withCredentials: true,  // <-- This ensures credentials like cookies are sent
+            }
+          );
           console.log('Game saved successfully');
         } catch (error) {
           console.error('Error saving game:', error);
@@ -74,6 +78,7 @@ const RockPaperScissors = () => {
       }
     }
   };
+  
 
   
   const determineWinner = (choice1, choice2) => {

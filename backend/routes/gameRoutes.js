@@ -6,9 +6,9 @@ require('dotenv').config();
 
 const pool = new Pool({
   user: 'postgres', 
-  host: 'gamedb.c5eu8cs0m3oa.eu-north-1.rds.amazonaws.com',  
-  database: 'game_db', 
-  password: 'Aps1234manojm',  
+  host: 'localhost',  
+  database: 'yelp', 
+  password: 'password123',  
   port: 5432,
 });
 

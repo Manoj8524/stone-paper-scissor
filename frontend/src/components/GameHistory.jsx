@@ -27,15 +27,18 @@ function GameHistory() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://13.235.67.211/api/games');
+        const response = await axios.get('https://13.235.67.211/api/games', {
+          withCredentials: true,  // <-- Add this line to send credentials
+        });
         dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
       } catch (error) {
         dispatch({ type: 'FETCH_ERROR', payload: error.message });
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   const columns = [
     { title: 'Player 1', dataIndex: 'player1', key: 'player1' },
